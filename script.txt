@@ -342,7 +342,7 @@ function setInputs(equation, showVectors, showYB, showXB) {
             document.getElementById("options").style["display"] = "block";
       } else {
             document.getElementById("inputs").style["display"] = "none";
-            document.getElementById("options").style["display"] = "none";
+            //document.getElementById("options").style["display"] = "none";
       }
     }
 

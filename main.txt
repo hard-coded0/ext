@@ -3,7 +3,7 @@
       #bodydiv {
         font-family: arial;
         position: absolute;
-        right: 10px;
+        /*right: 10px;*/
         z-index: 100;
         font-family: arial;
         background: #121212;

@@ -1,0 +1,342 @@
+function setInputs(equation, showVectors, showYB, showXB) {
+      document.getElementById("equation").innerText = equation;
+
+      if (showVectors) {
+        document.getElementById("vec-inputs").style["display"] = "block";
+      } else {
+        document.getElementById("vec-inputs").style["display"] = "none";
+      }
+
+      if (showYB) {
+        document.getElementById("yb").style["display"] = "block";
+      } else {
+        document.getElementById("yb").style["display"] = "none";
+      }
+
+      if (showXB) {
+        document.getElementById("xb").style["display"] = "block";
+      } else {
+        document.getElementById("xb").style["display"] = "none";
+      }
+    }
+    function changeInputs() {
+      document.getElementById('inputs').style["display"] = "block";
+      let val = document.getElementById('options').value;
+      if (val == "vecTrans") {
+        setInputs('(x,y)->(x+Vx,y+Vy)', true, false, false);
+
+        let inputs = document.getElementsByClassName("eq");
+
+        for (let i = 0; i < inputs.length; i++) {
+          inputs[i].addEventListener('input', () => {
+            let x = document.getElementById("x").value;
+            let y = document.getElementById("y").value;
+            let vx = document.getElementById("vx").value;
+            let vy = document.getElementById("vy").value;
+
+
+            if (x == '') {x = 0;}
+            if (y == '') {y = 0;}
+            if (vx == '') {vx = 0;}
+            if (vy == '') {vy = 0;}
+
+
+            if (typeof (x) != "number") {x = parseFloat(x);}
+            if (typeof (y) != "number") {y = parseFloat(y);}
+            if (typeof (vx) != "number") {vx = parseFloat(vx);}
+            if (typeof (vy) != "number") {vy = parseFloat(vy);}
+
+
+            document.getElementById("ox").innerText = `${x + vx}`; 
+            document.getElementById("oy").innerText = `${y + vy}`;
+          });
+        }
+      } else if (val == "xRef") {
+        setInputs('(x,y)->(x,-y)', false, false, false);
+
+        let inputs = document.getElementsByClassName("eq");
+
+        for (let i = 0; i < inputs.length; i++) {
+          inputs[i].addEventListener('input', () => {
+            let x = document.getElementById("x").value;
+            let y = document.getElementById("y").value;
+
+
+            if (x == '') {x = 0;}
+            if (y == '') {y = 0;}
+
+            if (typeof (x) != "number") {x = parseFloat(x);}
+            if (typeof (y) != "number") {y = parseFloat(y);}
+
+            document.getElementById("ox").innerText = `${x}`;
+            document.getElementById("oy").innerText = `${-y}`;
+          });
+        }
+      } else if (val == "yRef") {
+        setInputs('(x,y)->(-x,y)', false, false, false);
+
+        let inputs = document.getElementsByClassName("eq");
+
+        for (let i = 0; i < inputs.length; i++) {
+          inputs[i].addEventListener('input', () => {
+            let x = document.getElementById("x").value;
+            let y = document.getElementById("y").value;
+
+
+            if (x == '') {x = 0;}
+            if (y == '') {y = 0;}
+
+            if (typeof (x) != "number") {x = parseFloat(x);}
+            if (typeof (y) != "number") {y = parseFloat(y);}
+
+            document.getElementById("ox").innerText = `${-x}`;
+            document.getElementById("oy").innerText = `${y}`;
+          });
+        }
+      } else if (val == "yIsxRef") {
+        setInputs('(x,y)->(y,x)', false, false, false);
+
+        let inputs = document.getElementsByClassName("eq");
+
+        for (let i = 0; i < inputs.length; i++) {
+          inputs[i].addEventListener('input', () => {
+            let x = document.getElementById("x").value;
+            let y = document.getElementById("y").value;
+
+
+            if (x == '') {x = 0;}
+            if (y == '') {y = 0;}
+
+            if (typeof (x) != "number") {x = parseFloat(x);}
+            if (typeof (y) != "number") {y = parseFloat(y);}
+
+            document.getElementById("ox").innerText = `${y}`;
+            document.getElementById("oy").innerText = `${x}`;
+          });
+        }
+      } else if (val == "yIsNegxRef") {
+        setInputs('(x,y)->(-y,-x)', false, false, false);
+
+        let inputs = document.getElementsByClassName("eq");
+
+        for (let i = 0; i < inputs.length; i++) {
+          inputs[i].addEventListener('input', () => {
+            let x = document.getElementById("x").value;
+            let y = document.getElementById("y").value;
+
+
+            if (x == '') {x = 0;}
+            if (y == '') {y = 0;}
+
+            if (typeof (x) != "number") {x = parseFloat(x);}
+            if (typeof (y) != "number") {y = parseFloat(y);}
+
+            document.getElementById("ox").innerText = `${-y}`;
+            document.getElementById("oy").innerText = `${-x}`;
+          });
+        }
+      } else if (val == "yIsbRef") {
+        setInputs('(x,y)->(x,2b-y)', false,true,false);
+
+        let inputs = document.getElementsByClassName("eq");
+
+        for (let i = 0; i < inputs.length; i++) {
+          inputs[i].addEventListener('input', () => {
+            let x = document.getElementById("x").value;
+            let y = document.getElementById("y").value;
+            let b = document.getElementById("by").value;
+
+
+            if (x == '') {x = 0;}
+            if (y == '') {y = 0;}
+            if (b == '') {b = 0;}
+
+            if (typeof (x) != "number") {x = parseFloat(x);}
+            if (typeof (y) != "number") {y = parseFloat(y);}
+            if (typeof (b) != "number") {b = parseFloat(b);}
+
+            document.getElementById("ox").innerText = `${x}`;
+            document.getElementById("oy").innerText = `${2*b-y}`;
+          });
+        }
+      } else if (val == "xIsbRef") {
+        setInputs('(x,y)->(2b-x,y)', false,false,true);
+
+        let inputs = document.getElementsByClassName("eq");
+
+        for (let i = 0; i < inputs.length; i++) {
+          inputs[i].addEventListener('input', () => {
+            let x = document.getElementById("x").value;
+            let y = document.getElementById("y").value;
+            let b = document.getElementById("bx").value;
+
+
+            if (x == '') {x = 0;}
+            if (y == '') {y = 0;}
+            if (b == '') {b = 0;}
+
+            if (typeof (x) != "number") {x = parseFloat(x);}
+            if (typeof (y) != "number") {y = parseFloat(y);}
+            if (typeof (b) != "number") {b = parseFloat(b);}
+
+            document.getElementById("ox").innerText = `${2*b-x}`;
+            document.getElementById("oy").innerText = `${y}`;
+          });
+        }
+
+      } else if (val == "rot90clock") {
+        setInputs('(x,y)->(y,-x)', false,false,false);
+
+        let inputs = document.getElementsByClassName("eq");
+
+        for (let i = 0; i < inputs.length; i++) {
+          inputs[i].addEventListener('input', () => {
+            let x = document.getElementById("x").value;
+            let y = document.getElementById("y").value;
+
+
+            if (x == '') {x = 0;}
+            if (y == '') {y = 0;}
+
+            if (typeof (x) != "number") {x = parseFloat(x);}
+            if (typeof (y) != "number") {y = parseFloat(y);}
+
+            document.getElementById("ox").innerText = `${y}`;
+            document.getElementById("oy").innerText = `${-x}`;
+          });
+        }
+
+      } else if (val == "rot90counter") {
+        setInputs('(x,y)->(-y,x)', false,false,false);
+
+        let inputs = document.getElementsByClassName("eq");
+
+        for (let i = 0; i < inputs.length; i++) {
+          inputs[i].addEventListener('input', () => {
+            let x = document.getElementById("x").value;
+            let y = document.getElementById("y").value;
+
+
+            if (x == '') {x = 0;}
+            if (y == '') {y = 0;}
+
+            if (typeof (x) != "number") {x = parseFloat(x);}
+            if (typeof (y) != "number") {y = parseFloat(y);}
+
+            document.getElementById("ox").innerText = `${-y}`;
+            document.getElementById("oy").innerText = `${x}`;
+          });
+        }
+      } else if (val == "rot180") {
+        setInputs('(x,y)->(-x,-y)', false,false,false);
+
+        let inputs = document.getElementsByClassName("eq");
+
+        for (let i = 0; i < inputs.length; i++) {
+          inputs[i].addEventListener('input', () => {
+            let x = document.getElementById("x").value;
+            let y = document.getElementById("y").value;
+
+
+            if (x == '') {x = 0;}
+            if (y == '') {y = 0;}
+
+            if (typeof (x) != "number") {x = parseFloat(x);}
+            if (typeof (y) != "number") {y = parseFloat(y);}
+
+            document.getElementById("ox").innerText = `${-x}`;
+            document.getElementById("oy").innerText = `${-y}`;
+          });
+        }
+      } else if (val == "rot90clockAB") {
+        setInputs('(x,y)->(a+(y-b),b+(a-x))', true,false,false);
+
+        let inputs = document.getElementsByClassName("eq");
+
+        for (let i = 0; i < inputs.length; i++) {
+          inputs[i].addEventListener('input', () => {
+            let x = document.getElementById("x").value;
+            let y = document.getElementById("y").value;
+            let a = document.getElementById("vx").value;
+            let b = document.getElementById("vy").value;
+
+
+            if (x == '') {x = 0;}
+            if (y == '') {y = 0;}
+            if (a == '') {a = 0;}
+            if (b == '') {b = 0;}
+
+
+            if (typeof (x) != "number") {x = parseFloat(x);}
+            if (typeof (y) != "number") {y = parseFloat(y);}
+            if (typeof (a) != "number") {a = parseFloat(a);}
+            if (typeof (b) != "number") {b = parseFloat(b);}
+
+            document.getElementById("ox").innerText = `${a+(y-b)}`;
+            document.getElementById("oy").innerText = `${b+(a-x)}`;
+          });
+        }
+      } else if (val == "rot90counterAB") {
+        setInputs('(x,y)->(a+(b-y),b+(x-a))', true,false,false);
+
+        let inputs = document.getElementsByClassName("eq");
+
+        for (let i = 0; i < inputs.length; i++) {
+          inputs[i].addEventListener('input', () => {
+            let x = document.getElementById("x").value;
+            let y = document.getElementById("y").value;
+            let a = document.getElementById("vx").value;
+            let b = document.getElementById("vy").value;
+
+
+            if (x == '') {x = 0;}
+            if (y == '') {y = 0;}
+            if (a == '') {a = 0;}
+            if (b == '') {b = 0;}
+
+
+            if (typeof (x) != "number") {x = parseFloat(x);}
+            if (typeof (y) != "number") {y = parseFloat(y);}
+            if (typeof (a) != "number") {a = parseFloat(a);}
+            if (typeof (b) != "number") {b = parseFloat(b);}
+
+            document.getElementById("ox").innerText = `${b+(x-a)}`;
+            document.getElementById("oy").innerText = `${a+(b-y)}`;
+          });
+        }
+      } else if (val == "rot180AB") {
+        setInputs('(x,y)->(a+(a-x),b+(b-y))', true,false,false);
+
+        let inputs = document.getElementsByClassName("eq");
+
+        for (let i = 0; i < inputs.length; i++) {
+          inputs[i].addEventListener('input', () => {
+            let x = document.getElementById("x").value;
+            let y = document.getElementById("y").value;
+            let a = document.getElementById("vx").value;
+            let b = document.getElementById("vy").value;
+
+
+            if (x == '') {x = 0;}
+            if (y == '') {y = 0;}
+            if (a == '') {a = 0;}
+            if (b == '') {b = 0;}
+
+
+            if (typeof (x) != "number") {x = parseFloat(x);}
+            if (typeof (y) != "number") {y = parseFloat(y);}
+            if (typeof (a) != "number") {a = parseFloat(a);}
+            if (typeof (b) != "number") {b = parseFloat(b);}
+
+            document.getElementById("ox").innerText = `${b+(b-y)}`;
+            document.getElementById("oy").innerText = `${a+(a-x)}`;
+          });
+        }
+      }
+    }
+
+    document.getElementById("close").onclick = () => {
+      document.getElementById("bodydiv").style["display"] = "none";
+    }
+
+    document.getElementById("options").onchange = changeInputs;

@@ -335,8 +335,15 @@ function setInputs(equation, showVectors, showYB, showXB) {
       }
     }
 
+    let hidden = false;
     document.getElementById("close").onclick = () => {
-      document.getElementById("bodydiv").style["display"] = "none";
+      if(hidden) {
+            document.getElementById("inputs").style["display"] = "block";
+            document.getElementById("options").style["display"] = "block";
+      } else {
+            document.getElementById("inputs").style["display"] = "none";
+            document.getElementById("options").style["display"] = "none";
+      }
     }
 
     document.getElementById("options").onchange = changeInputs;

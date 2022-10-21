@@ -337,6 +337,7 @@ function setInputs(equation, showVectors, showYB, showXB) {
 
     let hidden = false;
     document.getElementById("close").onclick = () => {
+      alert("here");
       if(hidden) {
             document.getElementById("inputs").style["display"] = "block";
             document.getElementById("options").style["display"] = "block";
